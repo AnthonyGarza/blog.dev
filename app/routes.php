@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function() {
-	return 'we are home';
+	return View::make('temp.my-first-view');
 });
 
 // Route::get('/sayhello/{name}', function($name)
@@ -30,4 +30,42 @@ Route::get('/resume', function() {
 });
 Route::get('/portfolio', function() {
 	return 'This is my portfolio';
+});
+
+// Route::get('/sayhello/{name}', function($name)
+// {
+//     if ($name == "Chris")
+//     {
+//         return Redirect::to('/');
+//     }
+//     else
+//     {
+//         return View::make('temp.my-first-view')->with('name', $name);
+//     }
+// });
+
+Route::get('/sayhello/{name}', function($name)
+{
+    if ($name == "Chris")
+    {
+        return Redirect::to('/');
+    }
+    else
+    {
+        $data = array('name' => $name);
+        return View::make('temp.my-first-view')->with($data);
+    }
+});
+
+Route::get('/rolldice/{guess}', function($guess) {
+
+	$min = 1;
+	$max = 6;
+	$rand = rand($min,$max);
+	$data = array(
+		'rand' => $rand,
+		'guess' => $guess);
+	return View::make('temp.roll-dice')->with($data);
+
+
 });
