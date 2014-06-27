@@ -26,12 +26,26 @@ Route::get('/', function() {
 //     }
 // });
 
-Route::get('/resume', function() {
-	return 'This is my resume';
+// Route::get('/resume', function() {
+// 	return 'This is my resume';
+// });
+// Route::get('/portfolio', function() {
+// 	return 'This is my portfolio';
+// });
+
+// Create a route for your resume page at the path '/resume' that returns 'This is my resume'.
+// Create a route for your portfolio page at the path '/portfolio' that returns 'This is my portfolio'.
+Route::get('/resume', function(){
+	//return 'This is my resume';
+    return View::make('resume');
 });
-Route::get('/portfolio', function() {
-	return 'This is my portfolio';
+Route::get('/portfolio', function(){
+	//return 'This is my portfolio';
+    return View::make('portfolio');
 });
+
+
+
 
 // Route::get('/sayhello/{name}', function($name)
 // {
