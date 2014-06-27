@@ -25,6 +25,7 @@ Route::get('/', function() {
 //         return "Hello, $name!";
 //     }
 // });
+
 Route::get('/resume', function() {
 	return 'This is my resume';
 });
@@ -57,7 +58,15 @@ Route::get('/sayhello/{name}', function($name)
     }
 });
 
+Route::get('/rolldice', function() {
+	return $rand = rand(1,6);
+});
+
 Route::get('/rolldice/{guess}', function($guess) {
+
+	if (!is_numeric($guess)) {
+		return Redirect::to('/rolldice');
+	}
 
 	$min = 1;
 	$max = 6;
