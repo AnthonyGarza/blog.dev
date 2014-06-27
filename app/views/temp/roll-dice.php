@@ -4,16 +4,12 @@
     <title>Roll Dice</title>
 </head>
 <body>
-	<h1>Youre Guess is: <?php echo $guess; ?></h1>
-    <h1>Random number is: <?php echo $rand; ?></h1>
-    <h1>
-	    <?
-	    	if ($guess == $rand) {
-	    		echo 'Great Guess, you\'re AWESOME!' . PHP_EOL;
-	    	} else {
-	    		echo 'You guessed wrong, LOSER!' . PHP_EOL;
-	    	}
-	    ?>
-    </h1>
+	<h1>Youre Guess is: <?=$guess; ?></h1>
+    <h1>Random number is: <?=$rand; ?></h1>
+	    <? if ($guess == $rand) : ?>
+	    	<h1 style="color:green;">Great Guess, you're AWESOME!</h1>
+	    <? else : ?>
+	    	<h1 style="color:red;">You guessed wrong, LOSER!</h1>
+	    <? endif; ?>
 </body>
 </html>
