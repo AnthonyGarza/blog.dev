@@ -31,6 +31,8 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
+		Log::info(Input::all()); //  logs all of the inputs that are passed before redirecting
+								 //  back to the post create form
 		return Redirect::back()->withInput();
 	}
 
