@@ -59,6 +59,8 @@ Route::resource('posts', 'PostsController');
 
 
 
+
+
 // Route::get('/sayhello/{name}', function($name)
 // {
 //     if ($name == "Chris")
