@@ -14,6 +14,9 @@ class PostsController extends \BaseController {
 		$posts = Post::all();
 
 		return View::make('posts.index')->with('posts', $posts);
+
+		// return View::make('posts.index')->with('posts', Post::all());
+		// the above can also be used to replace line 14 and 16
 	}
 
 
@@ -39,12 +42,25 @@ class PostsController extends \BaseController {
 		// 						 //  back to the post create form
 		// return Redirect::back()->withInput();
 
-		$post = new Post();
-		$post->title = Input::get('title');
-		$post->body = Input::get('body');
-		$post->save();
 
-		return Redirect::action('PostsController@index');
+		// create the validator
+		$validator = Validator::make(Input::all(), Post::$rules);
+
+		// attempt validation
+		if ($validator->fails())
+		{
+			// validation failed, redirect to the post create page with validation errors and old inputs
+			return Redirect::back()->withInput()->withErrors($validator);
+		}
+		else
+		{
+			// validation succeeded, create and save the post
+			$post = new Post();
+			$post->title = Input::get('title');
+			$post->body = Input::get('body');
+			$post->save();
+			return Redirect::action('PostsController@index');
+		}
 
 	}
 
