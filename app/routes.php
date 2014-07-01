@@ -53,6 +53,58 @@ Route::get('portfolio', 'HomeController@showPortfolio');
 
 Route::resource('posts', 'PostsController');
 
+Route::get('orm-test', function () {
+    // $post = new Post();
+    // $post->title = "New Blog Post";
+    // $post->body = "Holy crap writing code using eloquent ORM is easy!";
+    // $post->save();
+
+
+    // $post1 = new Post();
+	// $post1->title = "Eloquent is awesome!";
+	// $post1->body = "It is super easy to create a new post.";
+	// $post1->save();
+
+	// $post2 = new Post();
+	// $post2->title = "Post number two";
+	// $post2->body = "The body for post number two.";
+	// $post2->save();
+
+
+    // $posts = Post::all();
+
+    // foreach ($posts as $post) {
+    // 	echo $post->title . "<br>";
+    // 	echo $post->body . "<br>";
+    // }
+
+    // $post = Post::find(1);
+
+    // echo $post->title . "<br>";
+    // echo $post->body . "<br>";
+
+    // $post = Post::find(1);
+
+    // echo $post->title . "<br>";
+    // echo $post->body . "<br>";
+
+    // $post->title = "This is a NEW Title";
+
+    // $post->save();
+
+
+    // return "Eloquent ORM is Eloquent";
+
+
+    $post = Post::find(1);
+
+   	$post->delete();
+
+
+    return "Eloquent ORM is Eloquent";
+
+});
+
 
 
 
