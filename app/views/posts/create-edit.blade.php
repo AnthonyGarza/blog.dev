@@ -8,7 +8,7 @@
         <h2>Edit post</h2>
         {{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method' => 'PUT')) }}
     @else
-        <h2>Create a new Post post</h2>
+        <h2>Create a new Post</h2>
         {{ Form::open(array('action'=>'PostsController@store')) }}
     @endif
 
