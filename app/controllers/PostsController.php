@@ -2,6 +2,15 @@
 
 class PostsController extends \BaseController {
 
+	public function __construct()
+	{
+	    // call base controller constructor
+	    parent::__construct();
+
+	    // run auth filter before all methods on this controller except index and show
+	    $this->beforeFilter('auth.basic', array('except' => array('index', 'show')));
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -118,6 +127,7 @@ class PostsController extends \BaseController {
 		else
 		{
 			// validation succeeded, edited and save the post
+			$post = Post::find($id);
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
 			$post->save();
@@ -140,7 +150,7 @@ class PostsController extends \BaseController {
 		$post = Post::findOrFail($id);
 		$post->delete();
 		Session::flash('successMessage', 'Post deleted Successfully!');
-		return Redirect::action('PostController@index');
+		return Redirect::action('PostsController@index');
 	}
 
 
