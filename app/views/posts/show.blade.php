@@ -2,16 +2,15 @@
 
 @section('content')
     <h1>My Laravel Blog</h1>
-    <!-- <h2>
-    	<p>{{{ $post->title }}}</p>
-		<p>{{{ $post->body }}}</p>
-    </h2> -->
+
+    <h1>Blog Post #{{{ $post->id }}}</h1>
 
     <div class="container">
-		<h1>Blog Post {{{ $post->id }}}</h1>
+
 		<!-- display post content -->
-		<h2>{{{ $post->title }}}</h2>
-		<h2>{{{ $post->body }}}</h2>
+		<h3>{{{ $post->title }}}</h3>
+		<h3>{{{ $post->body }}}</h3>
+		<h4>{{{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}}</h4>
 	</div>
 
 
