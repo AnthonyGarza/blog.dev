@@ -18,14 +18,42 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
-		// return "Show a list of all posts";
 
-		$posts = Post::paginate(4);
+		// $posts = Post::with('user')->paginate(4);
 
+		// if (Input::has('search'))
+		// {
+		// 	$title = Input::get('search', '');
+		// 	$posts = Post::with('user')->orderBy('created_at', 'desc')->where('title', 'LIKE', '%$search%')->get();
+		// 	return View::with('user')->orderBy('created_at', 'desc');
+		// }
+		// else
+		// {
+		// 	// return "Show a paginated list of all posts in descending order by the created_at field "
+
+		// 	// $posts = Post::orderBy('created_at', 'desc')->paginate(4);
+
+		// 	return View::make('posts.index')->with('posts', $posts);
+
+		// 	// return View::make('posts.index')->with('posts', Post::all());
+		// 	// the above can also be used to replace line 14 and 16
+		// }
+
+		$search = Input::get('search');
+		$query = Post::orderBy('created_at', 'desc');
+
+		// Added search
+		if(is_null($search))
+		{
+			$posts = $query->paginate(5);
+		}
+		else
+		{
+			$posts = $query->where('title', 'LIKE', "%{$search}%")
+						   ->orWhere('body', 'LIKE', "%{$search}%")
+						   ->paginate(5);
+		}
 		return View::make('posts.index')->with('posts', $posts);
-
-		// return View::make('posts.index')->with('posts', Post::all());
-		// the above can also be used to replace line 14 and 16
 	}
 
 
@@ -127,7 +155,7 @@ class PostsController extends \BaseController {
 		else
 		{
 			// validation succeeded, edited and save the post
-			$post = Post::find($id);
+			$post = Post::findOrFail($id);
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
 			$post->save();
