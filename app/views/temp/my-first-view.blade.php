@@ -1,5 +1,5 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1>Hello, <?php echo $name; ?>!</h1>
+    <h1>Hello, Codeup!</h1>
 @stop
