@@ -8,7 +8,7 @@ class PostsController extends \BaseController {
 	    parent::__construct();
 
 	    // run auth filter before all methods on this controller except index and show
-	    $this->beforeFilter('auth.basic', array('except' => array('index', 'show')));
+	    $this->beforeFilter('auth', array('except' => array('index', 'show')));
 	}
 
 	/**
@@ -16,44 +16,18 @@ class PostsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	// Displays all posts
 	public function index()
 	{
+		$posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(4);
 
-		// $posts = Post::with('user')->paginate(4);
-
-		// if (Input::has('search'))
-		// {
-		// 	$title = Input::get('search', '');
-		// 	$posts = Post::with('user')->orderBy('created_at', 'desc')->where('title', 'LIKE', '%$search%')->get();
-		// 	return View::with('user')->orderBy('created_at', 'desc');
-		// }
-		// else
-		// {
-		// 	// return "Show a paginated list of all posts in descending order by the created_at field "
-
-		// 	// $posts = Post::orderBy('created_at', 'desc')->paginate(4);
-
-		// 	return View::make('posts.index')->with('posts', $posts);
-
-		// 	// return View::make('posts.index')->with('posts', Post::all());
-		// 	// the above can also be used to replace line 14 and 16
-		// }
-
+		if (Input::has('search'))
+		{
 		$search = Input::get('search');
-		$query = Post::orderBy('created_at', 'desc');
+		$posts = Post::where('title', 'LIKE', '%' . $search . '%')->paginate(50);
 
-		// Added search
-		if(is_null($search))
-		{
-			$posts = $query->paginate(5);
-		}
-		else
-		{
-			$posts = $query->where('title', 'LIKE', "%{$search}%")
-						   ->orWhere('body', 'LIKE', "%{$search}%")
-						   ->paginate(5);
-		}
-		return View::make('posts.index')->with('posts', $posts);
+	    }
+			return View::make('posts.index')->with('posts', $posts);
 	}
 
 
@@ -62,6 +36,7 @@ class PostsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	// Creates new blog post
 	public function create()
 	{
 		return View::make('posts.create-edit');
@@ -73,34 +48,10 @@ class PostsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	// Saves blog post to dB
 	public function store()
 	{
-		// Log::info(Input::all()); //  logs all of the inputs that are passed before redirecting
-		// 						 //  back to the post create form
-		// return Redirect::back()->withInput();
-
-
-		// create the validator
-		$validator = Validator::make(Input::all(), Post::$rules);
-
-		// attempt validation
-		if ($validator->fails())
-		{
-			// validation failed, redirect to the post create page with validation errors and old inputs
-			Session::flash('errorMessage', 'Post was not created...Please see error messages below!');
-			return Redirect::back()->withInput()->withErrors($validator);
-		}
-		else
-		{
-			// validation succeeded, create and save the post
-			$post = new Post();
-			$post->title = Input::get('title');
-			$post->body = Input::get('body');
-			$post->save();
-			Session::flash('successMessage', 'Post created Successfully!');
-			return Redirect::action('PostsController@index');
-		}
-
+		return $this->update(null);
 	}
 
 
@@ -110,10 +61,12 @@ class PostsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	// Shows individual blog post
 	public function show($id)
 	{
 		// return "Show a specific post: $id";
-		$post = Post::find($id);
+		$post = Post::findorFail($id);
+		// $post->body = Parsedown::instance()->parse($post->body);
 		return View::make('posts.show')->with('post', $post);
 	}
 
@@ -124,6 +77,7 @@ class PostsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	// Edit existing blog post
 	public function edit($id)
 	{
 		// return "Show form for editing post: $id";
@@ -138,31 +92,43 @@ class PostsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	// Updates blog posts to dB
 	public function update($id)
 	{
-		// return "Update a specific post: $id";
-		$post = Post::findOrFail($id);
-		// create the validator
+		Session::flash('successMessage', 'Post created successfully');
+		$post = new Post();
+		$post->user()->associate(Auth::user());
+
+		if ($id != null)
+		{
+			Session::flash('successMessage', 'Post edited successfully');
+			$value = Session::get('successMessage');
+			$post = Post::findOrFail($id);
+		}
+
 		$validator = Validator::make(Input::all(), Post::$rules);
 
-		// attempt validation
 		if ($validator->fails())
 		{
-			// validation failed, redirect to the post create page with validation errors and old inputs
-			Session::flash('errorMessage', 'Post was not updated...Please see error messages below!');
+			Session::forget('successMessage');
+			Session::flash('errorMessage', 'Please fill out all required fields');
 			return Redirect::back()->withInput()->withErrors($validator);
 		}
 		else
 		{
-			// validation succeeded, edited and save the post
-			$post = Post::findOrFail($id);
 			$post->title = Input::get('title');
 			$post->body = Input::get('body');
 			$post->save();
-			Session::flash('successMessage', 'Post updated Successfully!');
-			return Redirect::action('PostsController@show', $post->id)->with('post', $post);
-		}
 
+			if (Input::hasFile('image') && Input::file('image')->isValid())
+			{
+				$post->addUploadedImage(Input::file('image'));
+				$post->save();
+			}
+
+			return Redirect::action('PostsController@index');
+			// return Redirect::action('PostsController@show', $post->id)->with($value);
+		}
 	}
 
 
@@ -172,6 +138,7 @@ class PostsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	// Deletes post
 	public function destroy($id)
 	{
 		// return "Delete a specific post: $id";

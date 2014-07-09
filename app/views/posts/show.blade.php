@@ -1,22 +1,29 @@
 @extends('layouts.master')
 
+
 @section('content')
-    <h1>My Laravel Blog</h1>
+<div class="container">
+	<h2>{{{ $post->title }}}</h2>
+	<h4>Author: {{{ $post->user->email }}}</h4>
+	<h5>{{{ $post->created_at->format('l, F jS Y @ h:i:s A') }}}</h5>
 
-    <h1>Blog Post #{{{ $post->id }}}</h1>
 
-    <div class="container">
 
-		<!-- display post content -->
-		<h3>{{{ $post->title }}}</h3>
-		<h3>{{{ $post->body }}}</h3>
-		<h3>{{{ $post->user->email }}}</h3>
-		<h4>{{{ $post->created_at->format('l, F jS Y @ h:i:s A') }}}</h4>
+	@if ($post->img_path)
+		<img src="{{{ $post->img_path }}}" class="img-responsive">
+	@endif
 
-		{{ Form::open(array('action' => array('PostsController@destroy', $post->id), 'method' => 'DELETE')) }}
-			{{ Form::submit('DELETE') }}
-    	{{ Form::close() }}
-	</div>
+	<h3>{{ $post->renderBody() }}</h3>
 
+	<br />
+
+	{{ Form::open(array('action' => array('PostsController@destroy', $post->id), 'method' => 'DELETE' )) }}
+	{{ Form::submit('Delete') }}
+	{{ Form::close() }}
+</div>
+<hr>
+<div class="container">
+	<h4>{{ link_to_action('PostsController@index', 'Show all Posts') }}</h4>
+</div>
 
 @stop

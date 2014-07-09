@@ -32,6 +32,14 @@
   </head>
 
   <body data-spy="scroll" data-offset="0" data-target="#nav">
+    <div class="container">
+        @if (Auth::check())
+            {{{ Auth::user()->email }}}
+            {{ link_to_action('HomeController@logout', "Log Out") }}
+        @else
+            {{ link_to_action('HomeController@showLogin', "Log In") }}
+        @endif
+    </div>
 
     <div class="container">
         @if (Session::has('successMessage'))
@@ -43,6 +51,12 @@
 
         @yield('content')
     </div>
+    <!-- <div class="container">
+        {{ Form::open(array('action' => 'PostsController@index', 'class' => 'form-inline', 'method' => 'GET')) }}
+        {{ Form::text('search', null, array('placeholder' => 'Search Query', 'class' => 'form-control col-lg-4')) }}
+        <button type="submit" class="btn btn-success">Search</button>
+        {{ Form::close() }}
+    </div> -->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

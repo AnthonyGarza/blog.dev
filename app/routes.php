@@ -45,7 +45,13 @@
 //     return View::make('pages.portfolio');
 // });
 
-Route::get('/', 'HomeController@showWelcome');
+// Route::get('/', 'HomeController@showWelcome');
+
+Route::get('/login', 'HomeController@showLogin');
+
+Route::post('/login', 'HomeController@doLogin');
+
+Route::get('/logout', 'HomeController@logout');
 
 Route::get('resume', 'HomeController@showResume');
 
@@ -96,12 +102,12 @@ Route::get('orm-test', function () {
     // return "Eloquent ORM is Eloquent";
 
 
-    $post = Post::find(1);
+    // $post = Post::find(1);
 
-   	$post->delete();
+   	// $post->delete();
 
 
-    return "Eloquent ORM is Eloquent";
+    // return "Eloquent ORM is Eloquent";
 
 });
 

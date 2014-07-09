@@ -1,27 +1,28 @@
 @extends('layouts.master')
 
 @section('content')
-	<h1>My Laravel Blog</h1>
-	<h1> Edit Blog Post</h1>
 
-	{{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method' => 'PUT')) }}
-		{{ Form::label('title', 'Title') }}
-        {{ Form::text('title') }}
-        <!-- get an error by field name formatted within html -->
-        {{ $errors->first('title', '<span class="help-block">:message</span><br>') }}
+<h1> Edit post </h1>
 
-		<br>
-	    <br>
+@if ($errors->has('title'))
+	{{ $errors->first('title', '<span class="help-block">:message</span>') }}<br>
+@endif
 
-	    {{ Form::label('body', 'Post Body') }}
-	    {{ Form::textarea('body') }}
-	    <!-- get an error by field name formatted within html -->
-	    {{ $errors->first('body', '<span class="help-block">:message</span><br>') }}
+@if ($errors->has('body'))
+	{{ $errors->first('body', '<span class="help-block">:message</span>') }}<br>
+@endif
+<br />
 
-	    <br>
-	    <br>
+{{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method' => 'PUT')) }}
 
-    {{ Form::submit('Save Post') }}
+	{{ Form::label('title', 'Title') }}
+	{{ Form::text('title') }}
 
-	{{ Form::close() }}
+	{{ Form::label('body', 'Body') }}
+	{{ Form::text('body') }}
+
+	<input type="submit" value="submit" />
+
+{{ Form::close() }}
+
 @stop

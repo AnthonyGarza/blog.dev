@@ -2,35 +2,53 @@
 
 @section('content')
 
-    <h1>My Laravel Blog</h1>
+<div class="container">
+    <div class="row centered mt mb">
+        <div class="col-lg-8 col-lg-offset-2">
 
-    @if (isset($post))
-        <h2>Edit post</h2>
-        {{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method' => 'PUT')) }}
-    @else
-        <h2>Create a new Post</h2>
-        {{ Form::open(array('action'=>'PostsController@store')) }}
-    @endif
+            @if ($errors->has('title'))
+                {{ $errors->first('title', '<span class="help-block">:message</span>') }}<br>
+            @endif
 
+            @if ($errors->has('body'))
+                {{ $errors->first('body', '<span class="help-block">:message</span>') }}<br>
+            @endif
 
-        {{ Form::label('title', 'Title') }}
-        {{ Form::text('title') }}
-        <!-- get an error by field name formatted within html -->
-        {{ $errors->first('title', '<span class="help-block">:message</span><br>') }}
+        </div>
+    </div><! --/row -->
 
-        <br>
-        <br>
+    <div class="row centered mt mb">
+        <div class="col-lg-8 col-lg-offset-2">
 
-        {{ Form::label('body', 'Post Body') }}
-        {{ Form::textarea('body') }}
-        <!-- get an error by field name formatted within html -->
-        {{ $errors->first('body', '<span class="help-block">:message</span><br>') }}
+            @if (isset($post))
+            <h1>Edit Post</h1>
+            {{ Form::model($post, array('action' => array('PostsController@update', $post->id), 'method' => 'PUT', 'files' => true)) }}
+            @else
+            <h1> Enter new post </h1>
+            {{ Form::open(array('action' => 'PostsController@store', 'files' => true)) }}
+            @endif
 
-        <br>
-        <br>
+            </div>
+        </div><! --/row -->
+<br />
 
-    {{ Form::submit('Save Post') }}
+    <div class="row centered mt mb">
+        <div class="col-lg-8 col-lg-offset-2">
 
-    {{ Form::close() }}
+            {{ Form::label('title', 'Title') }}
+            {{ Form::text('title') }}
+
+            {{ Form::file('image') }}
+
+            {{ Form::label('body', 'Body') }}
+            {{ Form::textarea('body') }}
+
+               <input type="submit" value="submit" />
+
+            {{ Form::close() }}
+
+        </div>
+    </div><! --/row -->
+</div><! --/container -->
 
 @stop
