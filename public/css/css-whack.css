@@ -1,0 +1,39 @@
+/*
+this is external css file for the whack.html
+*/
+
+h1 {
+    text-decoration: underline;
+    text-align: center;
+    font-weight: bold;
+}
+
+h2 {
+	text-align: center;
+}
+
+.hole {
+	width: 150px;
+ 	height: 150px;
+ 	padding: 10px;
+ 	margin: auto;
+ 	border: 1px solid black;
+ 	color: #FFF;
+ 	font-weight: bold;
+ 	float: left;
+}
+
+#main-div {
+	width: 516px;
+	height: 516px;
+	margin: auto;
+	border: 1px solid black;
+}
+
+
+.mole {
+	display: none;
+	position: relative;
+	right: 5px;
+	top: 15px;
+}
