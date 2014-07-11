@@ -12,10 +12,10 @@
 	@if ($post->img_path)
 		<img src="{{{ $post->img_path }}}" class="img-responsive">
 	@endif
-
+	
 	<h3>{{ $post->renderBody() }}</h3>
 
-	<br />
+	<br>
 
 	{{ Form::open(array('action' => array('PostsController@destroy', $post->id), 'method' => 'DELETE' )) }}
 	{{ Form::submit('Delete') }}

@@ -175,12 +175,12 @@ a:after {
 
 #headerwrap h1 {
 	font-size: 80px;
-	color: white;
+	color: rgb(222, 126, 28);
 }
 
 #headerwrap h3 {
 	font-size: 20px;
-	color: white;
+	color: rgb(222, 126, 28);
 }
 
 /* Intnro Wrap */
@@ -212,7 +212,7 @@ a:after {
 }
 
 #skillswrap h5, p {
-	color: white;
+	color: rgb(222, 126, 28);
 }
 
 #footwrap {

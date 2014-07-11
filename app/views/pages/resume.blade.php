@@ -27,7 +27,7 @@
 			<div class="row centered">
 				<div class="col-lg-12">
 					<h1>Anthony G. Garza</h1>
-					<h3>Junior Web Developer | agarza1972@yahoo.com</h3>
+					<h3>Full Stack Web Developer | agarza1972@yahoo.com</h3>
 				</div><!--/.col-lg-12 -->
 			</div><!--/.row -->
 		</div><!--/.container -->
@@ -347,7 +347,7 @@
 					<p>
 						<a href="#"><i class="icon-dribbble"></i></a>
 						<a href="#"><i class="icon-twitter"></i></a>
-						<a href="#"><i class="icon-facebook"></i></a>
+						<a href="https://www.facebook.com/anthony.garza.581187"><i class="icon-facebook"></i></a>
 						<a href="#"><i class="icon-linkedin"></i></a>
 						<a href="#"><i class="icon-apple"></i></a>
 
