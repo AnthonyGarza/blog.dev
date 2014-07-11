@@ -32,6 +32,28 @@
   </head>
 
   <body data-spy="scroll" data-offset="0" data-target="#nav">
+    <!-- Static navbar -->
+    <div class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Anthony Garza</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li class="active"><a href="index.html">Home</a></li> -->
+            <li><a href="/resume">Resume</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/posts/">Blog</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
     <div class="container">
         @if (Auth::check())
             {{{ Auth::user()->email }}}
@@ -49,14 +71,9 @@
             <div class="alert alert-danger">{{{ Session::get('errorMessage') }}}</div>
         @endif
 
-        @yield('content')
     </div>
-    <!-- <div class="container">
-        {{ Form::open(array('action' => 'PostsController@index', 'class' => 'form-inline', 'method' => 'GET')) }}
-        {{ Form::text('search', null, array('placeholder' => 'Search Query', 'class' => 'form-control col-lg-4')) }}
-        <button type="submit" class="btn btn-success">Search</button>
-        {{ Form::close() }}
-    </div> -->
+    @yield('content')
+
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
