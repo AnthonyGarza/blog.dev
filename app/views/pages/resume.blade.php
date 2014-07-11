@@ -63,25 +63,15 @@
 					<h5>EDUCATION</h5>
 				</div>
 				<div class="col-lg-6">
-					<p><t>Master of Web Design</t><br/>
-						St. Patrick University <br/>
-						<i>3 Years Course</i>
+					<p><t>Full Stack Web Development</t><br/>
+						Codeup <br/>
+						<i>12 Week Course</i>
 					</p>
 				</div>
 				<div class="col-lg-3">
-					<p><sm>GRADUATING IN MAY 2014</sm><br/>
+					<p><sm>GRADUATING IN JULY 2014</sm><br/>
 					<imp><sm>IN PROGRESS</sm></imp>
 					</p>
-				</div>
-
-				<div class="col-lg-6 col-lg-offset-3">
-					<p><t>Degree of Web Developer</t><br/>
-						Hastings University <br/>
-						<i>2 Years Course</i>
-					</p>
-				</div>
-				<div class="col-lg-3">
-					<p><sm>JUNE 2012</sm></p>
 				</div>
 
 		</div><!--/.row -->
@@ -98,23 +88,23 @@
 					<h5>WORK</h5>
 				</div>
 				<div class="col-lg-6">
-					<p><t>Front-end Developer</t><br/>
+					<!-- <p><t>Front-end Developer</t><br/>
 						Black Tie Corp. <br/>
 					</p>
-					<p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p>
+					<p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p> -->
 				</div>
 				<div class="col-lg-3">
-					<p><sm>AUGUST 2012 - CURRENT</sm></p>
+					<!-- <p><sm>AUGUST 2012 - CURRENT</sm></p> -->
 				</div>
 
 				<div class="col-lg-6 col-lg-offset-3">
-					<p><t>Web Designer - Intern</t><br/>
+					<!-- <p><t>Web Designer - Intern</t><br/>
 						Onassis Ltd. <br/>
 					</p>
-					<p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p>
+					<p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p> -->
 				</div>
 				<div class="col-lg-3">
-					<p><sm>JUNE 2010 - JULY 2012</sm></p>
+					<!-- <p><sm>JUNE 2010 - JULY 2012</sm></p> -->
 				</div>
 		</div><!--/.row -->
 		<br>
@@ -129,22 +119,22 @@
 					<h5>AWARDS</h5>
 				</div>
 				<div class="col-lg-6">
-					<p><t>Best Web Design</t><br/>
+					<!-- <p><t>Best Web Design</t><br/>
 						Black Tie Site <br/>
-					</p>
+					</p> -->
 				</div>
 				<div class="col-lg-3">
-					<p><sm>NOVEMBER 2013</sm></p>
+					<!-- <p><sm>NOVEMBER 2013</sm></p> -->
 				</div>
 
 				<div class="col-lg-6 col-lg-offset-3">
-					<p><t>Designer of the Year</t><br/>
-						Awwwards Site
-					</p>
-					<p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p>
+					<!-- <p><t>Designer of the Year</t><br/>
+						Awwwards Site -->
+					<!-- </p>
+					<p><more>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</more></p> -->
 				</div>
 				<div class="col-lg-3">
-					<p><sm>2013</sm></p>
+					<!-- <p><sm>2013</sm></p> -->
 				</div>
 
 		</div><!--/.row -->
@@ -197,7 +187,7 @@
 					</div>
 					<div class="col-lg-3 centered">
 						<canvas id="wordpress" height="130" width="130"></canvas>
-						<p>Wordpress</p>
+						<p>PHP</p>
 						<br>
 						<script>
 							var doughnutData = [
@@ -234,7 +224,7 @@
 					</div>
 					<div class="col-lg-3 centered">
 						<canvas id="photoshop" height="130" width="130"></canvas>
-						<p>Photoshop</p>
+						<p>MySQL</p>
 						<br>
 						<script>
 							var doughnutData = [
@@ -252,7 +242,7 @@
 					</div>
 					<div class="col-lg-3 centered">
 						<canvas id="illustrator" height="130" width="130"></canvas>
-						<p>Illustrator</p>
+						<p>Laravel</p>
 						<br>
 						<script>
 							var doughnutData = [
